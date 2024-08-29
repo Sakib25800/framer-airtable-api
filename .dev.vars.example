@@ -1,10 +1,10 @@
-CLIENT_ID=XXXXX
-CLIENT_SECRET=XXXX
+CLIENT_ID=XXXXXXXXXXXXXXXX
+CLIENT_SECRET=XXXXXXXXXXXXXXXX
 
 PLUGIN_URI=https://localhost:5173
-REDIRECT_URI=https://localhost:8787/redirect
+REDIRECT_URI=https://localhost:3001/redirect
 
-AUTHORIZE_ENDPOINT=https://accounts.google.com/o/oauth2/v2/auth
-TOKEN_ENDPOINT=https://oauth2.googleapis.com/token
+AUTHORIZE_ENDPOINT=https://airtable.com/oauth2/v1/authorize
+TOKEN_ENDPOINT=https://airtable.com/oauth2/v1/token
 
-SCOPE=https://www.googleapis.com/auth/userinfo.profile
+SCOPE="data.records:read schema.bases:read"
