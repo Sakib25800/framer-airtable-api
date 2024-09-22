@@ -2,7 +2,7 @@ CLIENT_ID=XXXXXXXXXXXXXXXX
 CLIENT_SECRET=XXXXXXXXXXXXXXXX
 
 PLUGIN_URI=https://localhost:5173
-REDIRECT_URI=https://localhost:3001/redirect
+REDIRECT_URI=https://localhost:8787/redirect
 
 AUTHORIZE_ENDPOINT=https://airtable.com/oauth2/v1/authorize
 TOKEN_ENDPOINT=https://airtable.com/oauth2/v1/token

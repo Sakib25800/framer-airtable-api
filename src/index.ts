@@ -7,7 +7,7 @@ async function handleRequest(request: Request, env: Env) {
 
   if (
     request.method === "POST" &&
-    requestUrl.pathname.startsWith("/auth/authorize")
+    requestUrl.pathname.startsWith("/authorize")
   ) {
     const readKey = generateRandomId();
     const writeKey = generateRandomId();
@@ -48,10 +48,7 @@ async function handleRequest(request: Request, env: Env) {
     });
   }
 
-  if (
-    request.method === "GET" &&
-    requestUrl.pathname.startsWith("/auth/redirect")
-  ) {
+  if (request.method === "GET" && requestUrl.pathname.startsWith("/redirect")) {
     const authorizationCode = requestUrl.searchParams.get("code");
     const writeKey = requestUrl.searchParams.get("state");
 
@@ -61,7 +58,7 @@ async function handleRequest(request: Request, env: Env) {
 
     const readKey = await env.airtableOAuthStore.get(`readKey:${writeKey}`);
     const codeVerifier = await env.airtableOAuthStore.get(
-      `codeVerifier:${writeKey}`
+      `codeVerifier:${writeKey}`,
     );
 
     if (!readKey || !codeVerifier) {
@@ -99,21 +96,18 @@ async function handleRequest(request: Request, env: Env) {
       JSON.stringify(tokens),
       {
         expirationTtl: 300,
-      }
+      },
     );
 
     return new Response(
       getHTMLTemplate("Authentication successful! You can close this window."),
       {
         headers: { "Content-Type": "text/html" },
-      }
+      },
     );
   }
 
-  if (
-    request.method === "POST" &&
-    requestUrl.pathname.startsWith("/auth/poll")
-  ) {
+  if (request.method === "POST" && requestUrl.pathname.startsWith("/poll")) {
     const readKey = requestUrl.searchParams.get("readKey");
 
     if (!readKey) {
@@ -144,10 +138,7 @@ async function handleRequest(request: Request, env: Env) {
     });
   }
 
-  if (
-    request.method === "POST" &&
-    requestUrl.pathname.startsWith("/auth/refresh")
-  ) {
+  if (request.method === "POST" && requestUrl.pathname.startsWith("/refresh")) {
     const refreshToken = requestUrl.searchParams.get("code");
 
     if (!refreshToken) {

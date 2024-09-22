@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-    "dev": "wrangler dev --https-key-path ./localhost-key.pem --https-cert-path ./localhost.pem --local-protocol https --port 3001",
+    "dev": "wrangler dev --https-key-path ./localhost-key.pem --https-cert-path ./localhost.pem --local-protocol https",
     "start": "wrangler dev",
     "test": "vitest",
     "cf-typegen": "wrangler types"
